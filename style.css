@@ -1,0 +1,287 @@
+/* カラー変数の定義 - ゲーム全体で使用される色の設定 */
+:root {
+    --color-background: #faf8ef;
+    --color-text-primary: #776e65;
+    --color-tile-base: #eee4da;
+    --color-tile-2: #eee4da;
+    --color-tile-4: #ede0c8;
+    --color-tile-8: #f2b179;
+    --color-tile-16: #f59563;
+    --color-tile-32: #f67c5f;
+    --color-tile-64: #f65e3b;
+    --color-tile-128: #edcf72;
+    --color-tile-256: #edcc61;
+    --color-tile-512: #edc850;
+    --color-tile-1024: #edc53f;
+    --color-tile-2048: #edc22e;
+    --color-tile-4096: #edc11d;
+    --color-tile-8192: #edc00c;
+    --color-tile-16384: #edbe00;
+    --color-tile-32768: #edbd00;
+    --color-tile-65536: #edbc00;
+    --color-tile-131072: #edbb00;
+    --color-board: #bbada0;
+    --color-button: #8f7a66;
+    --color-button-hover: #7f6a56;
+    --color-white: white;
+}
+
+/* グローバルスタイルのリセット */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ページ全体のレイアウト設定 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--color-background);
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* メインコンテナのレイアウト */
+.container {
+    max-width: 500px;
+    width: 100%;
+}
+
+/* ヘッダーセクションのレイアウト */
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: var(--color-text-primary);
+    font-size: 48px;
+}
+
+/* スコア表示エリアのレイアウト */
+.scores-container {
+    display: flex;
+    gap: 10px;
+}
+
+.score-box {
+    background: var(--color-board);
+    padding: 10px 20px;
+    border-radius: 3px;
+    color: var(--color-white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 100px;
+}
+
+.score-label {
+    font-size: 14px;
+}
+
+#score, #best-score {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#new-game {
+    background: var(--color-button);
+    color: var(--color-white);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#new-game:hover {
+    background: var(--color-button-hover);
+}
+
+/* ゲームボードのコンテナ設定 */
+.game-container {
+    background: var(--color-board);
+    padding: 15px;
+    border-radius: 6px;
+    position: relative;
+}
+
+/* グリッドレイアウトの設定 */
+.grid-container {
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.grid-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.grid-cell {
+    background: rgba(238, 228, 218, 0.35);
+    aspect-ratio: 1;
+    border-radius: 3px;
+    position: relative;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* タイルの基本スタイル設定 */
+.tile {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    font-weight: bold;
+    background-color: var(--color-tile-base);
+    border-radius: 3px;
+    transition: all 0.15s ease-in-out;
+    animation: tile-appear 0.2s ease-in-out;
+    color: var(--color-text-primary);
+}
+
+/* タイル出現時のアニメーション */
+@keyframes tile-appear {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.tile.merged {
+    animation: tile-merge 0.2s ease-in-out;
+    z-index: 1;
+}
+
+/* タイルマージ時のアニメーション */
+@keyframes tile-merge {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.2);
+    }
+    50% {
+        transform: scale(0.9);
+    }
+    75% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.tile-2 { background: var(--color-tile-2); }
+.tile-4 { background: var(--color-tile-4); }
+.tile-8 { background: var(--color-tile-8); color: var(--color-white); }
+.tile-16 { background: var(--color-tile-16); color: var(--color-white); }
+.tile-32 { background: var(--color-tile-32); color: var(--color-white); }
+.tile-64 { background: var(--color-tile-64); color: var(--color-white); }
+.tile-128 { background: var(--color-tile-128); color: var(--color-white); font-size: 20px; }
+.tile-256 { background: var(--color-tile-256); color: var(--color-white); font-size: 20px; }
+.tile-512 { background: var(--color-tile-512); color: var(--color-white); font-size: 20px; }
+.tile-1024 { background: var(--color-tile-1024); color: var(--color-white); font-size: 18px; }
+.tile-2048 { background: var(--color-tile-2048); color: var(--color-white); font-size: 18px; }
+.tile-4096 { background: var(--color-tile-4096); color: var(--color-white); font-size: 16px; }
+.tile-8192 { background: var(--color-tile-8192); color: var(--color-white); font-size: 16px; }
+.tile-16384 { background: var(--color-tile-16384); color: var(--color-white); font-size: 14px; }
+.tile-32768 { background: var(--color-tile-32768); color: var(--color-white); font-size: 14px; }
+.tile-65536 { background: var(--color-tile-65536); color: var(--color-white); font-size: 14px; }
+.tile-131072 { background: var(--color-tile-131072); color: var(--color-white); font-size: 14px; }
+
+/* ゲームオーバー画面のスタイル */
+.game-over {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(var(--color-tile-base-rgb), 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+}
+
+.game-over-message {
+    text-align: center;
+    color: var(--color-text-primary);
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#retry {
+    display: block;
+    margin-top: 15px;
+    background: var(--color-button);
+    color: var(--color-white);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#retry:hover {
+    background: var(--color-button-hover);
+}
+
+.hidden {
+    display: none;
+}
+
+/* モバイル対応のレスポンシブデザイン */
+@media (max-width: 520px) {
+    /* ヘッダーセクションのレイアウト */
+.header {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+        gap: 10px;
+    }
+
+    /* スコア表示エリアのレイアウト */
+.scores-container {
+        justify-content: center;
+    }
+
+    .grid-cell {
+        font-size: 20px;
+    }
+
+    /* タイルの基本スタイル設定 */
+.tile {
+        font-size: 20px;
+    }
+
+    .tile-128, .tile-256, .tile-512 {
+        font-size: 16px;
+    }
+
+    .tile-1024, .tile-2048 {
+        font-size: 14px;
+    }
+
+    .tile-4096, .tile-8192 {
+        font-size: 12px;
+    }
+
+    .tile-16384, .tile-32768, .tile-65536, .tile-131072 {
+        font-size: 10px;
+    }
+}
