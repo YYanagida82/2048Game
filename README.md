@@ -1,4 +1,4 @@
-# 2048 ゲーム
+# [2048 ゲーム](https://2048-game-clone-blush.vercel.app/)
 
 ![2048 ゲーム](https://placehold.jp/30/edcf72/ffffff/200x200.png?text=2048)
 
