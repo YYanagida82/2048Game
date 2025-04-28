@@ -156,7 +156,7 @@ class Game2048 {
      * @returns {boolean} - タイルが移動したかどうか
      */
     moveGeneric(direction) {
-        console.log('移動方向:', direction);
+        // console.log('移動方向:', direction);
         // 方向に応じたパラメータを設定
         const config = {
             'up': { isVertical: true, isReverse: false },
@@ -196,12 +196,12 @@ class Game2048 {
                 if (currentValue === compareValue && 
                     !this.mergedPositions.has(currentPos) && 
                     !this.mergedPositions.has(comparePos)) {
-                    console.log('マージ前の値:', currentValue, compareValue);
+                    // console.log('マージ前の値:', currentValue, compareValue);
                     line[j] = currentValue * 2;
-                    console.log('マージ後の値:', line[j]);
+                    // console.log('マージ後の値:', line[j]);
                     const oldScore = Number(this.score || 0);
                     this.score = oldScore + line[j];
-                    console.log('スコア更新:', oldScore, '->', this.score);
+                    // console.log('スコア更新:', oldScore, '->', this.score);
                     line.splice(compareIndex, 1);
                     moved = true;
                     this.mergedPositions.add(currentPos); // マージされた位置を記録
@@ -227,11 +227,11 @@ class Game2048 {
             }
             
             // 新しい行/列を作成
-            console.log('マージ後のライン:', line);
+            // console.log('マージ後のライン:', line);
             const newLine = isReverse
                 ? Array(4 - line.length).fill(0).concat(line.map(v => Number(v)))
                 : line.map(v => Number(v)).concat(Array(4 - line.length).fill(0));
-            console.log('新しいライン:', newLine);
+            // console.log('新しいライン:', newLine);
             
             // グリッドを更新
             for (let j = 0; j < 4; j++) {
